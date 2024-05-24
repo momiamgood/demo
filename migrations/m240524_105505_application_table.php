@@ -17,7 +17,7 @@ class m240524_105505_application_table extends Migration
             'title' => $this->string(),
             'user_id' => $this->integer(),
             'date' => $this->date(),
-            'car' => $this->string(),
+            'car_id' => $this->string(),
             'status' => $this->integer()
         ]);
 
@@ -32,6 +32,21 @@ class m240524_105505_application_table extends Migration
             'application',
             'user_id',
             'user',
+            'id',
+            'CASCADE'
+        );
+
+        $this->createIndex(
+            'idx-application-car_id',
+            'application',
+            'car_id'
+        );
+
+        $this->addForeignKey(
+            'fk-application-car_id',
+            'application',
+            'car_id',
+            'car',
             'id',
             'CASCADE'
         );
